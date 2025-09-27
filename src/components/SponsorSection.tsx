@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Heart, Coffee, Github, CreditCard } from 'lucide-react'
+import { Heart, Coffee, Github, CreditCard, DollarSign } from 'lucide-react'
 import Image from 'next/image'
 
 const SponsorSection = () => {
@@ -167,6 +167,24 @@ const SponsorSection = () => {
               className="h-2 w-2 bg-yellow-400 rounded-full"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+            />
+          </motion.a>
+
+          <motion.a
+            href="/paypal.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
+            variants={itemVariants}
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <DollarSign size={24} className="group-hover:rotate-12 transition-transform duration-300" />
+            PayPal
+            <motion.div
+              className="h-2 w-2 bg-blue-400 rounded-full"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity, delay: 1 }}
             />
           </motion.a>
         </motion.div>
