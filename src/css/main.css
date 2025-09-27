@@ -94,6 +94,17 @@ nav {
     color: #00f5d4;
 }
 
+.navbar a {
+    color: white;
+    text-decoration: none !important;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    color: #00f5d4;
+    text-decoration: none !important;
+}
+
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -113,6 +124,11 @@ nav {
         cursor: pointer;
         font-size: 1.3rem;
         background: rgba(20, 20, 30, 0.9);
+        color: white;
+        border: none;
+        position: sticky;
+        top: 0;
+        z-index: 1001;
     }
 }
 
