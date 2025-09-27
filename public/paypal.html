@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/images/favicon.png">
+  <title>PayPal Donation</title>
+  <style>
+    body {
+      background-color: #000;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    h1 {
+      color: #00457C;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      color: #0070BA;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+      color: #ccc;
+    }
+
+    #paypal-button-container {
+      margin: 2rem 0;
+      min-height: 50px;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .loading {
+      color: #0070BA;
+      font-style: italic;
+    }
+  </style>
+  <script 
+    src="https://www.paypal.com/sdk/js?client-id=BAA9qgjXvMKO0gUqRnE9zWoXHh1f9iMBnGXHnr7fvjEGQWSAkAndZ56iXS3zMLNrwXp-HThuLasLH8l5JM&components=hosted-buttons&disable-funding=venmo&currency=USD">
+  </script>
+</head>
+<body>
+
+  <h1>PayPal</h1>
+  <h2>Support My Work</h2>
+  <p>Your support helps me continue developing open-source projects!</p>
+
+  <!-- PayPal Button Container -->
+  <div id="paypal-button-container">
+    <p class="loading">Loading PayPal button...</p>
+  </div>
+
+  <p>K S THEJAS</p>
+
+  <footer>
+    © 2025 PayPal Inc. All rights reserved.
+  </footer>
+
+  <script>
+    // Initialize PayPal button when SDK is loaded
+    if (window.paypal) {
+      initPayPalButton();
+    } else {
+      // Wait for PayPal SDK to load
+      window.addEventListener('load', function() {
+        if (window.paypal) {
+          initPayPalButton();
+        }
+      });
+    }
+
+    function initPayPalButton() {
+      // Clear loading message
+      document.getElementById('paypal-button-container').innerHTML = '';
+      
+      // For now, we'll create a donation button
+      // In a real implementation, you would use:
+      // window.paypal.HostedButtons({
+      //   hostedButtonId: "YOUR_ACTUAL_HOSTED_BUTTON_ID"
+      // }).render('#paypal-button-container');
+      
+      // Fallback: Create a basic PayPal donation button
+      window.paypal.Buttons({
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: '5.00', // Default donation amount
+                currency_code: 'USD'
+              },
+              description: 'Support shield44 development work'
+            }]
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            alert('Thank you for your support, ' + details.payer.name.given_name + '!');
+          });
+        },
+        onError: function(err) {
+          console.error('PayPal Checkout Error:', err);
+          alert('An error occurred with the payment. Please try again.');
+        }
+      }).render('#paypal-button-container');
+    }
+  </script>
+
+</body>
+</html>
