@@ -1,0 +1,515 @@
+/* Modern CSS Reset and Base Styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Color palette */
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --tech-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    --neon-cyan: #00ffff;
+    --neon-pink: #ff00ff;
+    --neon-green: #00ff00;
+    --text-light: #ffffff;
+    --text-dark: #2c3e50;
+    --background-dark: #0a0a0a;
+    --accent-orange: #ff8000;
+    --accent-purple: #5348a8;
+    --accent-red: #d11717;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-light);
+    background: linear-gradient(-70deg, var(--background-dark), var(--accent-orange), var(--accent-purple), var(--background-dark), var(--accent-red));
+    background-size: 400% 400%;
+    animation: dynamicBG 15s ease infinite;
+    min-height: 100vh;
+}
+
+nav {
+    background-image: url('/images/bg.webp');
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    position: sticky;
+    top: 0;
+    text-decoration: none;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 1rem;
+    margin: 0;
+}
+
+.navbar li {
+    position: relative;
+    cursor: pointer;
+    font-weight: 500;
+    padding-left: 100px;
+    padding-right: 100px;
+    color: white;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar li::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    text-decoration: none;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00f5d4, #00bbf9, #f15bb5);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.navbar li:hover::after {
+    width: 100%;
+}
+
+.nav-link {
+    text-decoration: none !important;
+}
+
+.navbar li:hover {
+    color: #00f5d4;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        display: none;
+    }
+
+    .navbar.show {
+        display: flex;
+    }
+
+    .menu-button {
+        display: block;
+        text-align: center;
+        padding: 1rem;
+        cursor: pointer;
+        font-size: 1.3rem;
+        background: rgba(20, 20, 30, 0.9);
+    }
+}
+
+.menu-button {
+    display: none;
+}
+
+@keyframes neonBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.text-neon {
+    color: #ff0000 !important;
+    text-shadow: 0 0 10px #00ff99;
+}
+
+.neon-header {
+  color: rgb(89, 255, 0);
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+}
+
+#home {
+    text-align: center;
+    margin-top: 100px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Wave + neon glow effect */
+.animated-text h1 {
+    display: inline-block;
+    color: #060606;
+    font-size: 3rem;
+    position: relative;
+    text-shadow: 0 0 5px rgb(12, 25, 25), 0 0 10px rgb(72, 255, 0), 0 0 20px rgb(255, 119, 0), 0 0 40px rgb(0, 0, 0);
+}
+
+.animated-text h1 span {
+    display: inline-block;
+    animation: wave 1.5s infinite, glitch 2s infinite;
+}
+
+/* Wave letters animation */
+@keyframes wave {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Glitch flicker animation */
+@keyframes glitch {
+    0% {
+        text-shadow: 2px 2px red, -2px -2px cyan;
+    }
+
+    20% {
+        text-shadow: -2px 2px lime, 2px -2px yellow;
+    }
+
+    40% {
+        text-shadow: 2px -2px magenta, -2px 2px #0ff;
+    }
+
+    60% {
+        text-shadow: -2px -2px red, 2px 2px cyan;
+    }
+
+    80% {
+        text-shadow: 2px 2px lime, -2px -2px yellow;
+    }
+
+    100% {
+        text-shadow: 0 0 #00ffff;
+    }
+}
+
+/* Stagger letters for wave delay */
+.animated-text h1 span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.animated-text h1 span:nth-child(2) {
+    animation-delay: 0.05s;
+}
+
+.animated-text h1 span:nth-child(3) {
+    animation-delay: 0.1s;
+}
+
+.animated-text h1 span:nth-child(4) {
+    animation-delay: 0.15s;
+}
+
+/* continue for all letters with small increments */
+
+section {
+    padding: 80px 0;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
+}
+
+@keyframes rainbow {
+    0% {
+        background-position: 0% 50%
+    }
+
+    100% {
+        background-position: 100% 50%
+    }
+}
+
+.links {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.links h2 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
+}
+
+.social-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+    border-radius: 40px;
+    padding: 20px;
+    background: rgba(31, 24, 24, 0.5);
+}
+
+.social-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 50px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    background: linear-gradient(270deg, #ff00cc, #3333ff, #00ffcc);
+    background-size: 400% 400%;
+    animation: gradientSlide 5s ease infinite;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.social-btn i {
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 6px;
+    border-radius: 50%;
+}
+
+.social-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.8),
+        0 0 25px rgba(0, 255, 255, 0.6);
+}
+
+@keyframes gradientSlide {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Brand colors */
+.github {
+    background: linear-gradient(270deg, #333, #555);
+}
+
+.youtube {
+    background: linear-gradient(270deg, #ff0000, #cc0000);
+}
+
+.gmail {
+    background: linear-gradient(270deg, #ff9900, #ff6600);
+}
+
+.gitlab {
+    background: linear-gradient(270deg, #fc6d26, #e24329);
+}
+
+.sourceforge {
+    background: linear-gradient(270deg, #00ff99, #00cc88);
+}
+
+.telegram {
+    background: linear-gradient(270deg, #0088cc, #005577);
+}
+
+.projects {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.project-card {
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.project-card:hover {
+    border-color: cyan;
+    box-shadow: 0 0 15px cyan;
+    transform: translateY(-5px);
+}
+
+.project-card h3 {
+    color: cyan;
+    font-size: 1.2rem;
+}
+
+.project-card p {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.project-card a {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 1px solid cyan;
+    border-radius: 8px;
+    color: cyan;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.project-card a:hover {
+    background: cyan;
+    color: black;
+}
+
+/* 1) Nuke all text-decoration on navbar links across states */
+.navbar a,
+.navbar a:link,
+.navbar a:visited,
+.navbar a:hover,
+.navbar a:focus,
+.navbar a:active,
+.navbar .nav-link,
+.navbar .navbar-brand {
+    text-decoration: none !important;
+    color: white !important;
+    /* change to your desired color */
+}
+
+/* 2) Kill underline look-alikes (borders/shadows/gradients) */
+.navbar a,
+.navbar .nav-link,
+.navbar .navbar-brand {
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+    background-image: none !important;
+}
+
+/* 3) Bootstrap-specific: it re-adds underline on hover/focus */
+.nav-link:hover,
+.nav-link:focus,
+.navbar-nav .nav-link.active {
+    text-decoration: none !important;
+}
+
+img {
+    margin: 10px 0;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
+
+hr {
+    width: 80%;
+    border: 1px solid #444;
+    margin: 20px 0;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* allows wrapping on smaller screens */
+    gap: 20px;
+    /* spacing between images */
+    margin: 20px 0;
+}
+
+.stats-container img {
+    max-width: 300px;
+    /* adjust size as needed */
+    height: auto;
+    border-radius: 10px;
+}
+
+.neon-text {
+  color: rgb(3, 3, 3);
+  font-family: 'Courier New', monospace;
+  background: url('/images/time.jpg');
+  font-size: 2rem;
+  text-shadow: 
+      0 0 5px #0ff,
+      0 0 10px #0ff,
+      0 0 20px #0ff,
+      0 0 40px #0ff;
+}
+
+/* Optional: blinking colon effect */
+@keyframes blink {
+  0%, 49%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.neon-text span.colon {
+  animation: blink 1s infinite;
+}
+
+/* Container for buttons */
+.video-controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Base button style */
+.video-controls button {
+  background: linear-gradient(45deg, rgb(0, 255, 51), #00f);
+  border: 2px solid rgb(24, 255, 255);
+  color: #ff0f0f;
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgb(255, 140, 0), 0 0 10px #0ff;
+  box-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+}
+
+/* Hover effect */
+.video-controls button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(45deg, #0ff, rgb(26, 255, 0));
+  box-shadow: 0 0 20px #0ff, 0 0 40px rgb(0, 0, 0), 0 0 60px #0ff;
+  text-shadow: 0 0 10px #0ff, 0 0 20px #f0f;
+}

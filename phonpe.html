@@ -3,63 +3,182 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/images/phonpe.png">
-  <title>PhonePe Payment</title>
+  <meta name="description" content="Support shield44 via PhonePe - Secure digital payments">
+  <title>Support via PhonePe - Shield44</title>
+  <link rel="icon" href="images/phonpe.png">
   <style>
+    :root {
+      --phonpe-primary: #5f2c97;
+      --phonpe-secondary: #7b3fe4;
+      --text-light: #ffffff;
+      --text-dark: #2c3e50;
+      --background-dark: #0a0a0a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #000; /* Black background like the image */
-      color: white;
-      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, var(--background-dark) 0%, var(--phonpe-primary) 50%, var(--phonpe-secondary) 100%);
+      background-attachment: fixed;
+      color: var(--text-light);
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      margin: 0;
+      padding: 2rem;
       text-align: center;
     }
 
-    h1, h2, p {
-      margin: 10px 0;
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      padding: 3rem 2rem;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.8s ease-out;
     }
 
     h1 {
-      color: #7b3fe4; /* PhonePe purple */
-      font-size: 2rem;
+      color: var(--phonpe-secondary);
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 20px rgba(123, 63, 228, 0.5);
     }
 
     h2 {
-      color: #7b3fe4;
-      font-size: 1.2rem;
+      color: var(--text-light);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      opacity: 0.9;
     }
 
-    img {
-      margin: 20px 0;
-      width: 250px; /* adjust size if needed */
-      height: auto;
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+
+    .qr-container {
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .qr-image {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 3px solid rgba(123, 63, 228, 0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .qr-image:hover {
+      transform: scale(1.05);
+      border-color: var(--phonpe-secondary);
+    }
+
+    .user-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--phonpe-secondary);
+      margin: 1.5rem 0;
+      text-shadow: 0 0 10px rgba(123, 63, 228, 0.3);
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--phonpe-primary), var(--phonpe-secondary));
+      color: var(--text-light);
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(123, 63, 228, 0.3);
+    }
+
+    .back-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(123, 63, 228, 0.5);
+      color: var(--text-light);
+      text-decoration: none;
     }
 
     footer {
-      margin-top: 30px;
-      font-size: 0.8rem;
-      color: #aaa;
+      position: absolute;
+      bottom: 2rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-align: center;
+      max-width: 400px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .qr-image {
+        width: 200px;
+        height: 200px;
+      }
+
+      footer {
+        position: relative;
+        margin-top: 2rem;
+        bottom: auto;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>PhonePe</h1>
+    <h2>Payment Accepted Here</h2>
+    <p>Scan & Pay using the PhonePe App</p>
 
-  <h1>PhonePe</h1>
-  <h2>ACCEPTED HERE</h2>
-  <p>Scan & Pay Using PhonePe App</p>
+    <div class="qr-container">
+      <img src="images/qr.jpg" alt="PhonePe QR Code" class="qr-image">
+    </div>
 
-  <!-- QR Code Image -->
-  <img src="/images/qr.jpg" alt="PhonePe QR Code">
+    <div class="user-name">K S THEJAS</div>
 
-  <p>K S THEJAS</p>
+    <a href="index.html" class="back-button">← Back to Portfolio</a>
+  </div>
 
   <footer>
-    © 2025, All rights reserved, PhonePe Ltd (Formerly known as ‘PhonePe Private Ltd’)
+    © 2025 PhonePe Private Limited. All rights reserved.<br>
+    Secure digital payments powered by PhonePe.
   </footer>
-
 </body>
 </html>
