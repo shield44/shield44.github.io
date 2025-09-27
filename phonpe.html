@@ -17,10 +17,26 @@
       min-height: 100vh;
       margin: 0;
       text-align: center;
+      /* Disable text selection */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      /* Disable drag and drop */
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
     }
 
     h1, h2, p {
       margin: 10px 0;
+      /* Disable text selection */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
     h1 {
@@ -37,23 +53,147 @@
       margin: 20px 0;
       width: 250px; /* adjust size if needed */
       height: auto;
+      /* Disable image selection and dragging */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+      pointer-events: none;
     }
 
     footer {
       margin-top: 30px;
       font-size: 0.8rem;
       color: #aaa;
+      /* Disable text selection */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* Additional protection for all elements */
+    * {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
   </style>
 </head>
 <body>
+
+  <script>
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S, Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+    document.addEventListener('keydown', function(e) {
+      // Disable F12 (Developer Tools)
+      if (e.keyCode === 123) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Disable Ctrl+Shift+I (Developer Tools)
+      if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Disable Ctrl+Shift+J (Console)
+      if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Disable Ctrl+U (View Source)
+      if (e.ctrlKey && e.keyCode === 85) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Disable Ctrl+S (Save)
+      if (e.ctrlKey && e.keyCode === 83) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Disable Ctrl+A (Select All)
+      if (e.ctrlKey && e.keyCode === 65) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Disable Ctrl+C (Copy)
+      if (e.ctrlKey && e.keyCode === 67) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Disable Ctrl+V (Paste)
+      if (e.ctrlKey && e.keyCode === 86) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Disable Ctrl+X (Cut)
+      if (e.ctrlKey && e.keyCode === 88) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // Disable text selection
+    document.addEventListener('selectstart', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // Disable drag and drop
+    document.addEventListener('dragstart', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // Additional protection against printing
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.keyCode === 80) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // Disable image dragging specifically
+    document.addEventListener('DOMContentLoaded', function() {
+      const images = document.querySelectorAll('img');
+      images.forEach(function(img) {
+        img.addEventListener('dragstart', function(e) {
+          e.preventDefault();
+          return false;
+        });
+        img.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+          return false;
+        });
+      });
+    });
+  </script>
 
   <h1>PhonePe</h1>
   <h2>ACCEPTED HERE</h2>
   <p>Scan & Pay Using PhonePe App</p>
 
   <!-- QR Code Image -->
-  <img src="/images/qr.jpg" alt="PhonePe QR Code">
+  <img src="/images/qr.jpg" alt="PhonePe QR Code" draggable="false">
 
   <p>K S THEJAS</p>
 
