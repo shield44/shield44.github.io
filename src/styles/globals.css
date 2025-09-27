@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --background: 222 84% 5%;
+  --foreground: 210 40% 98%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(-70deg, #000000, #ff8000, #5348a8, #000000, #d11717);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  color: white;
+  min-height: 100vh;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #00f5d4, #00bbf9);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #00bbf9, #f15bb5);
+}
+
+/* Typing animation */
+.typing-text {
+  overflow: hidden;
+  border-right: 0.15em solid #00f5d4;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #00f5d4 }
+}
+
+/* Glow effects */
+.neon-glow {
+  text-shadow: 
+    0 0 5px #00f5d4,
+    0 0 10px #00f5d4,
+    0 0 15px #00f5d4,
+    0 0 20px #00f5d4;
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.3);
+}
+
+/* Animation delays for staggered effects */
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+.animate-delay-500 { animation-delay: 0.5s; }
