@@ -1,18 +1,16 @@
 # shield44's Portfolio
 
-A modern, responsive portfolio website built with Next.js, React, TypeScript, and Tailwind CSS.
+A bold, animated portfolio site built with Next.js, React, TypeScript, and Tailwind CSS, plus a dedicated Blogs page for ROM dev notes.
 
 ## 🚀 Features
 
-- **Modern Design**: Clean, professional UI with gradient backgrounds and animations
-- **Responsive Navbar**: Cool animated navbar that works on all devices
-- **Mobile-First**: Fully responsive design with mobile hamburger menu
+- **Animated UI**: Gradient backgrounds, glow effects, and Framer Motion transitions
+- **Responsive Navbar**: Smooth scrolling for sections + a dedicated Blogs route
 - **Live Clock**: Real-time clock display in the navbar
-- **Smooth Animations**: Framer Motion powered animations throughout
-- **Interactive Components**: Hover effects, transitions, and user interactions
-- **Project Showcase**: Comprehensive display of ROM development projects
-- **Contact Form**: Working contact form with Formspree integration
-- **Social Links**: Links to all social profiles and platforms
+- **Project Showcase**: Detailed ROM development highlights and download links
+- **Videos & Sponsor**: Media section and support options
+- **Contact & Socials**: Contact form and social profile links
+- **Blogs Page**: Template-driven blog cards aligned with the main UI
 
 ## 🛠️ Tech Stack
 
@@ -31,6 +29,19 @@ A modern, responsive portfolio website built with Next.js, React, TypeScript, an
 - **Videos**: Manim and Blender animation showcase
 - **Sponsor**: Support options with animated elements
 - **Contact**: Contact form and social media links
+- **Blogs**: Separate page for blog templates and future posts
+
+## ✍️ Editing Blog Templates
+
+Edit the blog templates in [src/app/blogs/page.tsx](src/app/blogs/page.tsx). Each entry includes:
+
+- `title`: Post headline
+- `excerpt`: Short teaser
+- `date`: Publish date string
+- `readTime`: Estimated reading time
+- `tags`: Label chips
+- `href`: Link to the post (can be `#` until published)
+- `status`: Draft/Template/Published
 
 ## 🚀 Development
 
@@ -44,6 +55,11 @@ yarn dev
 # Build for production
 yarn build
 ```
+
+## 🔗 Routes
+
+- `/` Main portfolio site
+- `/blogs` Blog templates page
 
 ## 📦 Deployment
 

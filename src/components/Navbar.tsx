@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Clock } from 'lucide-react'
 
@@ -36,7 +37,8 @@ const Navbar = () => {
     { href: '#projects', label: 'Projects' },
     { href: '#about', label: 'About me' },
     { href: '#contact', label: 'Contact' },
-    { href: '#sponsor', label: 'Sponsor' }
+    { href: '#sponsor', label: 'Sponsor' },
+    { href: '/blogs', label: 'Blogs', external: true }
   ]
 
   const handleMenuClick = (href: string) => {
@@ -47,6 +49,8 @@ const Navbar = () => {
       element.scrollIntoView({ behavior: 'smooth' })
     }
   }
+
+  const isHashLink = (href: string) => href.startsWith('#')
 
   return (
     <>
@@ -86,27 +90,50 @@ const Navbar = () => {
             {/* Desktop Menu */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
-                {menuItems.map((item, index) => (
-                  <motion.a
-                    key={item.href}
-                    href={item.href}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      handleMenuClick(item.href)
-                    }}
-                    className="text-gray-300 hover:text-primary px-3 py-2 text-sm font-medium transition-all duration-300 relative group cursor-pointer"
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 * index }}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    {item.label}
-                    <motion.div 
-                      className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-blue-400 group-hover:w-full transition-all duration-300"
-                      whileHover={{ width: '100%' }}
-                    />
-                  </motion.a>
-                ))}
+                {menuItems.map((item, index) => {
+                  const linkClasses = "text-gray-300 hover:text-primary px-3 py-2 text-sm font-medium transition-all duration-300 relative group cursor-pointer"
+                  if (isHashLink(item.href)) {
+                    return (
+                      <motion.a
+                        key={item.href}
+                        href={item.href}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          handleMenuClick(item.href)
+                        }}
+                        className={linkClasses}
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1 * index }}
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        {item.label}
+                        <motion.div 
+                          className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-blue-400 group-hover:w-full transition-all duration-300"
+                          whileHover={{ width: '100%' }}
+                        />
+                      </motion.a>
+                    )
+                  }
+
+                  return (
+                    <motion.div
+                      key={item.href}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.1 * index }}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <Link
+                        href={item.href}
+                        className={linkClasses}
+                      >
+                        {item.label}
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-blue-400 group-hover:w-full transition-all duration-300" />
+                      </Link>
+                    </motion.div>
+                  )
+                })}
               </div>
             </div>
 
@@ -156,23 +183,46 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
             >
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                {menuItems.map((item, index) => (
-                  <motion.a
-                    key={item.href}
-                    href={item.href}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      handleMenuClick(item.href)
-                    }}
-                    className="text-gray-300 hover:text-primary hover:bg-gray-700/50 block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200 cursor-pointer"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: 0.1 * index }}
-                    whileHover={{ x: 10 }}
-                  >
-                    {item.label}
-                  </motion.a>
-                ))}
+                {menuItems.map((item, index) => {
+                  const linkClasses = "text-gray-300 hover:text-primary hover:bg-gray-700/50 block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200 cursor-pointer"
+                  if (isHashLink(item.href)) {
+                    return (
+                      <motion.a
+                        key={item.href}
+                        href={item.href}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          handleMenuClick(item.href)
+                        }}
+                        className={linkClasses}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.1 * index }}
+                        whileHover={{ x: 10 }}
+                      >
+                        {item.label}
+                      </motion.a>
+                    )
+                  }
+
+                  return (
+                    <motion.div
+                      key={item.href}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: 0.1 * index }}
+                      whileHover={{ x: 10 }}
+                    >
+                      <Link
+                        href={item.href}
+                        className={linkClasses}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    </motion.div>
+                  )
+                })}
               </div>
             </motion.div>
           )}
