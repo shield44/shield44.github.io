@@ -56,7 +56,7 @@ const Navbar = () => {
     <>
       {/* Neon Clock */}
       <motion.div 
-        className="fixed top-4 left-4 z-50 bg-black/20 backdrop-blur-md px-4 py-2 rounded-lg border border-primary/30"
+        className="fixed top-4 left-4 z-50 glass-morphism-strong px-4 py-2 rounded-lg border border-primary/30"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -69,7 +69,7 @@ const Navbar = () => {
 
       {/* Navigation */}
       <motion.nav 
-        className="fixed top-0 left-0 w-full z-40 bg-black/10 backdrop-blur-md border-b border-white/10"
+        className="fixed top-0 left-0 w-full z-40 glass-morphism border-b border-white/10"
         initial={{ opacity: 0, y: -100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -176,7 +176,7 @@ const Navbar = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden absolute top-16 left-0 w-full bg-black/90 backdrop-blur-md border-t border-white/10"
+              className="md:hidden absolute top-16 left-0 w-full glass-morphism-strong border-t border-white/10"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}

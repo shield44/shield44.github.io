@@ -44,12 +44,6 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-32 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-32 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse animation-delay-500"></div>
-      </div>
-
       <motion.div 
         className="text-center z-10 px-4"
         variants={containerVariants}
@@ -58,7 +52,7 @@ const HeroSection = () => {
       >
         <motion.div className="mb-8">
           <motion.h1 
-            className="text-4xl md:text-6xl lg:text-8xl font-bold mb-4"
+            className="text-4xl md:text-6xl lg:text-8xl font-bold mb-4 cyberpunk-text"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
@@ -119,7 +113,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 2 }}
           >
             <motion.button
-              className="px-8 py-3 bg-gradient-to-r from-primary to-blue-500 text-black font-semibold rounded-full hover:shadow-lg hover:shadow-primary/50 transition-all duration-300"
+              className="px-8 py-3 bg-gradient-to-r from-primary to-blue-500 text-black font-semibold rounded-full hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 premium-glow"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => {
@@ -131,7 +125,7 @@ const HeroSection = () => {
             </motion.button>
             
             <motion.button
-              className="px-8 py-3 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-black transition-all duration-300"
+              className="px-8 py-3 glass-morphism-strong border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-black transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => {

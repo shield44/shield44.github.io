@@ -21,11 +21,10 @@ html {
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(-70deg, #000000, #ff8000, #5348a8, #000000, #d11717);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+  background: #000000;
   color: white;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 @layer utilities {
@@ -90,3 +89,82 @@ body {
 .animate-delay-200 { animation-delay: 0.2s; }
 .animate-delay-300 { animation-delay: 0.3s; }
 .animate-delay-500 { animation-delay: 0.5s; }
+
+/* Glassmorphism effects */
+.glass-morphism {
+  background: rgba(10, 10, 26, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 245, 212, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 245, 212, 0.1);
+}
+
+.glass-morphism-strong {
+  background: rgba(10, 10, 26, 0.8);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(0, 245, 212, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 245, 212, 0.2);
+}
+
+/* Holographic effect */
+.holographic {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 245, 212, 0.1) 0%,
+    rgba(0, 187, 249, 0.1) 25%,
+    rgba(241, 91, 181, 0.1) 50%,
+    rgba(155, 93, 229, 0.1) 75%,
+    rgba(0, 245, 212, 0.1) 100%
+  );
+  background-size: 200% 200%;
+  animation: holographic-shift 3s ease infinite;
+}
+
+@keyframes holographic-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Premium glow */
+.premium-glow {
+  box-shadow: 
+    0 0 20px rgba(0, 245, 212, 0.3),
+    0 0 40px rgba(0, 245, 212, 0.2),
+    0 0 60px rgba(0, 245, 212, 0.1);
+}
+
+.premium-glow:hover {
+  box-shadow: 
+    0 0 30px rgba(0, 245, 212, 0.5),
+    0 0 60px rgba(0, 245, 212, 0.3),
+    0 0 90px rgba(0, 245, 212, 0.2);
+}
+
+/* Cyberpunk text effect */
+.cyberpunk-text {
+  position: relative;
+  text-shadow: 
+    0 0 10px rgba(0, 245, 212, 0.8),
+    0 0 20px rgba(0, 245, 212, 0.6),
+    0 0 30px rgba(0, 245, 212, 0.4),
+    2px 2px 0px rgba(241, 91, 181, 0.5),
+    -2px -2px 0px rgba(0, 187, 249, 0.5);
+}
+
+/* Scan line effect */
+@keyframes scan-line {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+
+.scan-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(0, 245, 212, 0.8), transparent);
+  animation: scan-line 4s linear infinite;
+}
