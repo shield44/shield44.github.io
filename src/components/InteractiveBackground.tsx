@@ -12,6 +12,7 @@ interface Particle {
   size: number
   color: string
   alpha: number
+  cachedColor: string // Pre-computed color with alpha
 }
 
 interface Star {
@@ -57,6 +58,8 @@ const InteractiveBackground = () => {
       const colors = ['#00f5d4', '#00bbf9', '#f15bb5', '#fee440', '#9b5de5', '#06ffa5']
       
       for (let i = 0; i < 150; i++) {
+        const alpha = Math.random() * 0.5 + 0.3
+        const color = colors[Math.floor(Math.random() * colors.length)]
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
@@ -65,8 +68,9 @@ const InteractiveBackground = () => {
           vy: (Math.random() - 0.5) * 0.5,
           vz: Math.random() * 2,
           size: Math.random() * 3 + 1,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          alpha: Math.random() * 0.5 + 0.3,
+          color: color,
+          alpha: alpha,
+          cachedColor: `${color}${Math.floor(alpha * 255).toString(16).padStart(2, '0')}`,
         })
       }
       particlesRef.current = particles
@@ -114,9 +118,13 @@ const InteractiveBackground = () => {
     window.addEventListener('mousemove', handleMouseMove)
 
     // Main animation loop
+    let frameCount = 0
     const animate = () => {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'
+      // Clear canvas every frame for better performance
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
+      
+      frameCount++
 
       // Draw stars
       starsRef.current.forEach((star) => {
@@ -157,9 +165,9 @@ const InteractiveBackground = () => {
           particle.vy += dy * 0.00005
         }
 
-        // Create glow effect
+        // Create glow effect with pre-computed color
         const gradient = ctx.createRadialGradient(x, y, 0, x, y, size * 4)
-        gradient.addColorStop(0, `${particle.color}${Math.floor(particle.alpha * 255).toString(16).padStart(2, '0')}`)
+        gradient.addColorStop(0, particle.cachedColor)
         gradient.addColorStop(0.5, `${particle.color}${Math.floor(particle.alpha * 128).toString(16).padStart(2, '0')}`)
         gradient.addColorStop(1, 'transparent')
 
@@ -212,26 +220,28 @@ const InteractiveBackground = () => {
         })
       })
 
-      // Draw matrix code rain
-      codeCharsRef.current.forEach((char) => {
-        ctx.font = '14px monospace'
-        ctx.fillStyle = `rgba(0, 245, 212, ${char.opacity})`
-        ctx.fillText(char.char, char.x, char.y)
+      // Draw matrix code rain (render every 2nd frame for performance)
+      if (frameCount % 2 === 0) {
+        codeCharsRef.current.forEach((char) => {
+          ctx.font = '14px monospace'
+          ctx.fillStyle = `rgba(0, 245, 212, ${char.opacity})`
+          ctx.fillText(char.char, char.x, char.y)
 
-        // Update position
-        char.y += char.speed
-        if (char.y > canvas.height) {
-          char.y = 0
-          const codeChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*(){}[]<>/\\|~`'
-          char.char = codeChars[Math.floor(Math.random() * codeChars.length)]
-        }
+          // Update position
+          char.y += char.speed
+          if (char.y > canvas.height) {
+            char.y = 0
+            const codeChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*(){}[]<>/\\|~`'
+            char.char = codeChars[Math.floor(Math.random() * codeChars.length)]
+          }
 
-        // Random character change
-        if (Math.random() < 0.05) {
-          const codeChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*(){}[]<>/\\|~`'
-          char.char = codeChars[Math.floor(Math.random() * codeChars.length)]
-        }
-      })
+          // Random character change
+          if (Math.random() < 0.05) {
+            const codeChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*(){}[]<>/\\|~`'
+            char.char = codeChars[Math.floor(Math.random() * codeChars.length)]
+          }
+        })
+      }
 
       // Draw orbital rings
       const time = Date.now() * 0.0005
