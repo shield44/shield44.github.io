@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import '../styles/globals.css'
+import BackgroundAnimation from '@/components/BackgroundAnimation'
 
 export const metadata: Metadata = {
   title: 'shield44 - Tech Enthusiast & ROM Developer',
@@ -23,7 +24,10 @@ export default function RootLayout({
           src="https://www.paypal.com/sdk/js?client-id=BAA9qgjXvMKO0gUqRnE9zWoXHh1f9iMBnGXHnr7fvjEGQWSAkAndZ56iXS3zMLNrwXp-HThuLasLH8l5JM&components=hosted-buttons&disable-funding=venmo&currency=USD">
         </script>
       </head>
-      <body>{children}</body>
+      <body>
+        <BackgroundAnimation />
+        {children}
+      </body>
     </html>
   )
 }
