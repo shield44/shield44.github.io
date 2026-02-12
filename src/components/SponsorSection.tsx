@@ -194,7 +194,7 @@ const SponsorSection = () => {
           variants={containerVariants}
         >
           <motion.div 
-            className="bg-black/40 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:border-primary/50 transition-all duration-300 card-glow"
+            className="glass-morphism rounded-xl p-6 hover:border-primary/50 transition-all duration-300 card-glow"
             variants={itemVariants}
             whileHover={{ y: -5 }}
           >
@@ -206,7 +206,7 @@ const SponsorSection = () => {
           </motion.div>
 
           <motion.div 
-            className="bg-black/40 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:border-primary/50 transition-all duration-300 card-glow"
+            className="glass-morphism rounded-xl p-6 hover:border-primary/50 transition-all duration-300 card-glow"
             variants={itemVariants}
             whileHover={{ y: -5 }}
           >
@@ -218,7 +218,7 @@ const SponsorSection = () => {
           </motion.div>
 
           <motion.div 
-            className="bg-black/40 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:border-primary/50 transition-all duration-300 card-glow"
+            className="glass-morphism rounded-xl p-6 hover:border-primary/50 transition-all duration-300 card-glow"
             variants={itemVariants}
             whileHover={{ y: -5 }}
           >

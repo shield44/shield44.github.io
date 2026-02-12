@@ -33,7 +33,7 @@ const AboutSection = () => {
     <section 
       id="about" 
       ref={ref}
-      className="min-h-screen py-20 px-4 bg-gradient-to-br from-gray-900/50 to-black/50"
+      className="min-h-screen py-20 px-4 relative"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div

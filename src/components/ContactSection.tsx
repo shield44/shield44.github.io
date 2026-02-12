@@ -106,7 +106,7 @@ const ContactSection = () => {
         >
           {/* Contact Form */}
           <motion.div 
-            className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-xl p-8"
+            className="glass-morphism rounded-xl p-8"
             variants={itemVariants}
           >
             <motion.h3 
@@ -130,7 +130,7 @@ const ContactSection = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full bg-black/50 border border-white/20 rounded-lg pl-12 pr-4 py-3 text-white placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all duration-300"
+                    className="w-full glass-morphism-strong rounded-lg pl-12 pr-4 py-3 text-white placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all duration-300"
                   />
                 </div>
                 
@@ -143,7 +143,7 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full bg-black/50 border border-white/20 rounded-lg pl-12 pr-4 py-3 text-white placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all duration-300"
+                    className="w-full glass-morphism-strong rounded-lg pl-12 pr-4 py-3 text-white placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all duration-300"
                   />
                 </div>
               </motion.div>
@@ -157,7 +157,7 @@ const ContactSection = () => {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="w-full bg-black/50 border border-white/20 rounded-lg pl-12 pr-4 py-3 text-white placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all duration-300"
+                  className="w-full glass-morphism-strong rounded-lg pl-12 pr-4 py-3 text-white placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all duration-300"
                 />
               </motion.div>
               
@@ -169,7 +169,7 @@ const ContactSection = () => {
                   onChange={handleInputChange}
                   required
                   rows={5}
-                  className="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all duration-300 resize-none"
+                  className="w-full glass-morphism-strong rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all duration-300 resize-none"
                 />
               </motion.div>
               
@@ -215,7 +215,7 @@ const ContactSection = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center gap-3 bg-black/40 backdrop-blur-sm border border-white/10 rounded-lg p-4 hover:border-primary/50 transition-all duration-300 card-glow group ${link.color}`}
+                    className={`flex items-center gap-3 glass-morphism rounded-lg p-4 hover:border-primary/50 transition-all duration-300 card-glow group ${link.color}`}
                     variants={itemVariants}
                     whileHover={{ scale: 1.05, y: -5 }}
                     whileTap={{ scale: 0.95 }}
@@ -228,7 +228,7 @@ const ContactSection = () => {
             </motion.div>
 
             <motion.div 
-              className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-xl p-6 mt-8"
+              className="glass-morphism rounded-xl p-6 mt-8"
               variants={itemVariants}
             >
               <h4 className="text-lg font-semibold text-primary mb-4">Let&apos;s Collaborate!</h4>
