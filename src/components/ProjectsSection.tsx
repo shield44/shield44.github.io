@@ -155,7 +155,7 @@ const ProjectsSection = () => {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:border-primary/50 transition-all duration-300 card-glow group"
+              className="glass-morphism rounded-xl p-6 hover:border-primary/50 transition-all duration-300 premium-glow group"
               variants={itemVariants}
               whileHover={{ y: -5, scale: 1.02 }}
             >
