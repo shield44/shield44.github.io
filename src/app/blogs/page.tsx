@@ -40,7 +40,7 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {Building My First ROM: Notes From the Trenches
+    transition: {
       staggerChildren: 0.15,
       delayChildren: 0.2
     }
