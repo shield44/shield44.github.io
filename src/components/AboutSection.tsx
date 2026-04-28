@@ -148,7 +148,7 @@ const AboutSection = () => {
                 whileHover={{ scale: 1.02 }}
               >
                 <Image
-                  src="https://nirzak-streak-stats.vercel.app/?user=shield44&theme=dark&hide_border=true"
+                  src="https://streak-stats.demolab.com/?user=shield44&theme=dark&hide_border=false"
                   alt="GitHub Streak"
                   width={400}
                   height={200}
