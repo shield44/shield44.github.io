@@ -7,40 +7,32 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="glass-morphism-strong border-t border-primary/10 py-8 px-4">
-      <div className="max-w-7xl mx-auto text-center">
-        <motion.div 
-          className="flex items-center justify-center gap-2 mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <span className="text-gray-300">Made with</span>
-          <Heart className="h-4 w-4 text-red-400 animate-pulse" />
-          <span className="text-gray-300">by</span>
-          <span className="text-primary font-semibold">shield44</span>
-        </motion.div>
-        
-        <motion.p 
-          className="text-gray-400 text-sm"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          &copy; {currentYear} shield44. All rights reserved. Content is protected under copyright law.
-        </motion.p>
+    <footer className="py-8 px-4 mt-8">
+      <div className="content-wrap">
+        <div className="glass-surface-strong border border-white/15 py-7 px-6 text-center">
+          <motion.div
+            className="flex items-center justify-center gap-2 mb-3"
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <span className="text-slate-200/90">Made with</span>
+            <Heart className="h-4 w-4 text-pink-300" />
+            <span className="text-slate-200/90">by</span>
+            <span className="text-cyan-100 font-semibold">Thejas KS</span>
+          </motion.div>
 
-        <motion.div 
-          className="mt-4 flex justify-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <div className="h-px w-24 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
-        </motion.div>
+          <motion.p
+            className="text-slate-300/80 text-sm"
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            viewport={{ once: true }}
+          >
+            &copy; {currentYear} Thejas KS. All rights reserved.
+          </motion.p>
+        </div>
       </div>
     </footer>
   )
