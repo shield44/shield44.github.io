@@ -21,6 +21,49 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: 'PQ-AI Provenance',
+    description:
+      'A local-first research app exploring dataset fingerprints, signed provenance records, post-quantum signatures, and AI model experiments.',
+    status: 'Research project',
+    category: 'AI · Cryptography',
+    links: [{ href: 'https://github.com/shield44-project/post-quantum-cryptography', label: 'View on GitHub', icon: Github }],
+  },
+  {
+    title: 'AMD Detection System',
+    description:
+      'A Qt/C++ interface connected to a Python vision backend for retinal-image classification and CAM heatmap visualization. Research prototype; not a clinical diagnostic tool.',
+    status: 'Research prototype',
+    category: 'Computer Vision',
+    links: [{ href: 'https://github.com/shield44-project/Age-Related-Macular-Degeneration', label: 'View on GitHub', icon: Github }],
+  },
+  {
+    title: 'AI Traffic Intelligence System',
+    description:
+      'A traffic-monitoring application combining vehicle detection, congestion forecasting, emission estimates, live video analysis, and reporting.',
+    status: 'Application',
+    category: 'AI · Sustainability',
+    links: [{ href: 'https://github.com/shield44-project/traffic_monitor', label: 'View on GitHub', icon: Github }],
+  },
+  {
+    title: 'V2X Connect',
+    description:
+      'A web-based traffic and emergency-response concept with mapping modules, demo workflows, and a Next.js application.',
+    status: 'Web application',
+    category: 'Web · Mobility',
+    links: [
+      { href: 'https://github.com/shield44-project/v2v-v2i', label: 'View on GitHub', icon: Github },
+      { href: 'https://v2v-v2i.vercel.app/', label: 'Live site', icon: ExternalLink },
+    ],
+  },
+  {
+    title: 'PDF Sheet Music to Video',
+    description:
+      'A Python project exploring a workflow for turning sheet-music PDFs into rendered video output.',
+    status: 'Python project',
+    category: 'Creative tooling',
+    links: [{ href: 'https://github.com/shield44-project/piano', label: 'View on GitHub', icon: Github }],
+  },
+  {
     title: 'Official Pixel Experience trees for Xiaomi Redmi 8A Dual (discontinued)',
     description:
       'Device tree for Xiaomi Redmi 8A Dual (olivewood) including hardware configuration, vendor blobs, and kernel integration.',
@@ -166,21 +209,28 @@ const ProjectsSection = () => {
           <p className="section-subtitle mb-4">Portfolio</p>
           <h2 className="section-heading mb-5">Featured Projects</h2>
           <p className="text-slate-200/85 max-w-3xl mx-auto">
-            A curated list of ROM development trees, release links, and supporting resources.
+            A selection of research, computer-vision, mobility, and Android projects, followed by ROM development work and related resources.
           </p>
         </motion.div>
 
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.65, delay: 0.15 }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.12 } },
+          }}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
         >
           {projects.map((project) => (
             <motion.article
               key={project.title}
-              className="glass-surface p-6 flex flex-col h-full border border-white/20 hover:border-cyan-200/40 transition-all duration-300"
-              whileHover={{ y: -4, scale: 1.01 }}
+              className="glass-surface project-card p-6 flex flex-col h-full border border-white/15 hover:border-cyan-100/40 transition-all duration-300"
+              variants={{
+                hidden: { opacity: 0, y: 18 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.45 } },
+              }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               <div className="flex items-center justify-between gap-3 mb-3 text-xs uppercase tracking-[0.18em]">
                 <span className="text-cyan-100/85">{project.category}</span>

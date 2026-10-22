@@ -2,6 +2,9 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
+import VantaBackground from '@/components/VantaBackground'
 
 const blogPosts = [
   {
@@ -12,7 +15,7 @@ const blogPosts = [
     readTime: '6 min read',
     tags: ['Android', 'ROM', 'Build'],
     href: '#',
-    status: 'Draft'
+    status: 'Coming soon'
   },
   {
     title: 'Kernel Tweaks That Actually Matter',
@@ -22,7 +25,7 @@ const blogPosts = [
     readTime: '4 min read',
     tags: ['Kernel', 'Performance'],
     href: '#',
-    status: 'Template'
+    status: 'Coming soon'
   },
   {
     title: 'Releasing Builds Without Burning Out',
@@ -32,7 +35,7 @@ const blogPosts = [
     readTime: '5 min read',
     tags: ['Workflow', 'Release'],
     href: '#',
-    status: 'Template'
+    status: 'Coming soon'
   }
 ]
 
@@ -54,8 +57,11 @@ const itemVariants = {
 
 export default function BlogsPage() {
   return (
-    <main className="min-h-screen pt-24 pb-20 px-4">
-      <div className="max-w-6xl mx-auto">
+    <main className="min-h-screen">
+      <Navbar />
+      <section className="visual-section visual-section--blogs min-h-screen pt-32 pb-20 px-4">
+      <VantaBackground effect="DOTS" color={0x24747a} />
+      <div className="max-w-6xl mx-auto relative z-[1]">
         <motion.div
           className="text-center mb-14"
           initial="hidden"
@@ -78,7 +84,7 @@ export default function BlogsPage() {
             className="text-gray-300 max-w-2xl mx-auto mt-5"
             variants={itemVariants}
           >
-            A focused space for ROM dev insights, release notes, and personal experiments. Edit the templates below to publish new posts.
+            Notes from Android development, machine learning experiments, and building open-source software.
           </motion.p>
         </motion.div>
 
@@ -119,12 +125,11 @@ export default function BlogsPage() {
                 <span className="text-[11px] uppercase tracking-[0.2em] text-gray-400">
                   {post.status}
                 </span>
-                <a
-                  href={post.href}
-                  className="text-sm text-primary hover:text-blue-400 transition-colors duration-300"
-                >
-                  Read more →
-                </a>
+                {post.href !== '#' ? (
+                  <a href={post.href} className="text-sm text-primary hover:text-blue-400 transition-colors duration-300">Read more →</a>
+                ) : (
+                  <span className="text-xs text-gray-500">In progress</span>
+                )}
               </div>
             </motion.article>
           ))}
@@ -139,9 +144,7 @@ export default function BlogsPage() {
           <h3 className="text-2xl md:text-3xl font-semibold text-white">
             Want to add a new post?
           </h3>
-          <p className="text-gray-300 mt-3">
-            Duplicate an entry in the blog template array and update the title, excerpt, tags, and link.
-          </p>
+          <p className="text-gray-300 mt-3">Build notes and technical write-ups are on the way.</p>
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/"
@@ -160,6 +163,8 @@ export default function BlogsPage() {
           </div>
         </motion.div>
       </div>
+      </section>
+      <Footer />
     </main>
   )
 }

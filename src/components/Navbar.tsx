@@ -53,14 +53,14 @@ const Navbar = () => {
   return (
     <>
       <motion.div
-        className="fixed top-4 left-4 z-50 glass-surface px-3 py-2 border border-white/20"
+        className="fixed top-[4.75rem] right-4 z-50 glass-surface px-3 py-2.5 border border-white/20 sm:right-6"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         <div className="flex items-center gap-2 text-cyan-100 neon-glow">
-          <Clock size={16} />
-          <span className="font-mono text-sm md:text-base">{currentTime}</span>
+          <Clock size={15} aria-hidden="true" />
+          <span className="font-mono text-xs sm:text-sm tabular-nums">{currentTime}</span>
         </div>
       </motion.div>
 

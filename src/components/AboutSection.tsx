@@ -4,14 +4,16 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import Image from 'next/image'
+import VantaBackground from './VantaBackground'
 
 const AboutSection = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.25 })
 
   return (
-    <section id="about" ref={ref} className="section-shell">
-      <div className="content-wrap">
+    <section id="about" ref={ref} className="section-shell visual-section visual-section--about">
+      <VantaBackground effect="TOPOLOGY" color={0x326d76} />
+      <div className="content-wrap relative z-[1]">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
