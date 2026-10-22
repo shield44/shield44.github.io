@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import VantaNetBackground from './VantaNetBackground'
 
 const HeroSection = () => {
   const [animatedText, setAnimatedText] = useState('')
@@ -21,25 +22,27 @@ const HeroSection = () => {
   }, [])
 
   return (
-    <section id="home" className="section-shell min-h-screen flex items-center pt-20 overflow-hidden">
-      <div className="content-wrap">
+    <section id="home" className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+      <VantaNetBackground />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,15,18,0.96)_0%,rgba(8,15,18,0.78)_48%,rgba(8,15,18,0.3)_100%)]" />
+      <div className="content-wrap relative">
         <motion.div
-          className="glass-surface-strong p-8 sm:p-10 lg:p-14 text-center border border-white/25"
+          className="max-w-5xl py-10 sm:py-16 lg:py-20"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75 }}
         >
           <motion.p
-            className="section-subtitle mb-4"
+            className="section-subtitle mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            Portfolio
+            RVCE / CSE / Open source
           </motion.p>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-            <span className="bg-gradient-to-r from-cyan-200 via-sky-200 to-indigo-200 bg-clip-text text-transparent">
+          <h1 className="max-w-4xl text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-[0.98]">
+            <span className="text-stone-100">
               {animatedText}
             </span>
           </h1>
@@ -50,11 +53,12 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
           >
-            Passionate tech enthusiast, ROM developer, and software engineer.
+            I&apos;m a second-year Computer Science Engineering student at RVCE, building useful things
+            around Android, open source, and the systems underneath the screen.
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10"
+            className="flex flex-col sm:flex-row gap-4 items-start mt-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.6 }}
