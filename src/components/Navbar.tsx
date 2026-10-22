@@ -12,21 +12,15 @@ const Navbar = () => {
   useEffect(() => {
     const updateClock = () => {
       const now = new Date()
-      let hours = now.getHours()
-      const minutes = now.getMinutes()
-      const seconds = now.getSeconds()
-      const ampm = hours >= 12 ? 'PM' : 'AM'
-      
-      hours = hours % 12
-      hours = hours ? hours : 12
-      
-      const strHours = hours < 10 ? '0' + hours : hours
-      const strMinutes = minutes < 10 ? '0' + minutes : minutes
-      const strSeconds = seconds < 10 ? '0' + seconds : seconds
-      
-      setCurrentTime(`${strHours}:${strMinutes}:${strSeconds} ${ampm}`)
+      const strTime = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+      })
+      setCurrentTime(strTime)
     }
-    
+
     updateClock()
     const interval = setInterval(updateClock, 1000)
     return () => clearInterval(interval)
@@ -35,18 +29,22 @@ const Navbar = () => {
   const menuItems = [
     { href: '#home', label: 'Home' },
     { href: '#projects', label: 'Projects' },
-    { href: '#about', label: 'About me' },
-    { href: '#contact', label: 'Contact' },
+    { href: '#about', label: 'About' },
+    { href: '#videos', label: 'Videos' },
     { href: '#sponsor', label: 'Sponsor' },
-    { href: '/blogs', label: 'Blogs', external: true }
+    { href: '#contact', label: 'Contact' },
+    { href: '/blogs', label: 'Blogs', external: true },
   ]
 
   const handleMenuClick = (href: string) => {
     setIsOpen(false)
-    // Smooth scroll to section
+    if (!href.startsWith('#')) {
+      return
+    }
+
     const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 
@@ -54,44 +52,42 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Neon Clock */}
-      <motion.div 
-        className="fixed top-4 left-4 z-50 bg-black/20 backdrop-blur-md px-4 py-2 rounded-lg border border-primary/30"
+      <motion.div
+        className="fixed top-4 left-4 z-50 glass-surface px-3 py-2 border border-white/20"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="flex items-center gap-2 text-primary neon-glow">
-          <Clock size={20} />
-          <span className="font-mono text-lg">{currentTime}</span>
+        <div className="flex items-center gap-2 text-cyan-100 neon-glow">
+          <Clock size={16} />
+          <span className="font-mono text-sm md:text-base">{currentTime}</span>
         </div>
       </motion.div>
 
-      {/* Navigation */}
-      <motion.nav 
-        className="fixed top-0 left-0 w-full z-40 bg-black/10 backdrop-blur-md border-b border-white/10"
+      <motion.nav
+        className="fixed top-0 left-0 w-full z-40 border-b border-white/10 bg-slate-950/45 backdrop-blur-xl"
         initial={{ opacity: 0, y: -100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="content-wrap">
           <div className="flex items-center justify-between h-16">
-            {/* Logo/Brand */}
-            <motion.div 
+            <motion.div
               className="flex-shrink-0 cursor-pointer"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.03 }}
               onClick={() => handleMenuClick('#home')}
             >
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
-                shield44
+              <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-200 to-indigo-200 bg-clip-text text-transparent">
+                Thejas KS
               </h1>
             </motion.div>
 
-            {/* Desktop Menu */}
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
+              <div className="ml-10 flex items-center space-x-1 lg:space-x-2">
                 {menuItems.map((item, index) => {
-                  const linkClasses = "text-gray-300 hover:text-primary px-3 py-2 text-sm font-medium transition-all duration-300 relative group cursor-pointer"
+                  const linkClasses =
+                    'text-slate-200/90 hover:text-cyan-200 px-3 py-2 text-sm font-medium transition-all duration-300 rounded-lg hover:bg-white/5 relative group card-focus'
+
                   if (isHashLink(item.href)) {
                     return (
                       <motion.a
@@ -104,14 +100,10 @@ const Navbar = () => {
                         className={linkClasses}
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1 * index }}
-                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.45, delay: 0.08 * index }}
+                        whileHover={{ scale: 1.03 }}
                       >
                         {item.label}
-                        <motion.div 
-                          className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-blue-400 group-hover:w-full transition-all duration-300"
-                          whileHover={{ width: '100%' }}
-                        />
                       </motion.a>
                     )
                   }
@@ -121,15 +113,11 @@ const Navbar = () => {
                       key={item.href}
                       initial={{ opacity: 0, y: -20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.1 * index }}
-                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.45, delay: 0.08 * index }}
+                      whileHover={{ scale: 1.03 }}
                     >
-                      <Link
-                        href={item.href}
-                        className={linkClasses}
-                      >
+                      <Link href={item.href} className={linkClasses}>
                         {item.label}
-                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-blue-400 group-hover:w-full transition-all duration-300" />
                       </Link>
                     </motion.div>
                   )
@@ -137,12 +125,12 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Mobile menu button */}
             <div className="md:hidden">
               <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-primary hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-colors duration-200"
+                className="inline-flex items-center justify-center p-2 rounded-lg text-slate-100 hover:text-cyan-200 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-300 transition-colors duration-200"
                 whileTap={{ scale: 0.95 }}
+                aria-label="Toggle menu"
               >
                 <AnimatePresence mode="wait">
                   {isOpen ? (
@@ -172,19 +160,20 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden absolute top-16 left-0 w-full bg-black/90 backdrop-blur-md border-t border-white/10"
+              className="md:hidden absolute top-16 left-0 w-full glass-surface-strong border-t border-white/10"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              <div className="content-wrap py-3 space-y-1">
                 {menuItems.map((item, index) => {
-                  const linkClasses = "text-gray-300 hover:text-primary hover:bg-gray-700/50 block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200 cursor-pointer"
+                  const linkClasses =
+                    'text-slate-100 hover:text-cyan-200 hover:bg-white/5 block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200 card-focus'
+
                   if (isHashLink(item.href)) {
                     return (
                       <motion.a
@@ -197,8 +186,7 @@ const Navbar = () => {
                         className={linkClasses}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: 0.1 * index }}
-                        whileHover={{ x: 10 }}
+                        transition={{ duration: 0.3, delay: 0.06 * index }}
                       >
                         {item.label}
                       </motion.a>
@@ -210,14 +198,9 @@ const Navbar = () => {
                       key={item.href}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: 0.1 * index }}
-                      whileHover={{ x: 10 }}
+                      transition={{ duration: 0.3, delay: 0.06 * index }}
                     >
-                      <Link
-                        href={item.href}
-                        className={linkClasses}
-                        onClick={() => setIsOpen(false)}
-                      >
+                      <Link href={item.href} className={linkClasses} onClick={() => setIsOpen(false)}>
                         {item.label}
                       </Link>
                     </motion.div>
@@ -229,11 +212,10 @@ const Navbar = () => {
         </AnimatePresence>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-30 bg-black/20 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-30 bg-slate-950/35 backdrop-blur-sm md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
